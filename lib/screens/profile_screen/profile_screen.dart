@@ -23,6 +23,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     final provider =
@@ -32,34 +34,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: appBarProfileScreen(context),
       body:   Padding(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: CustomScrollView(
-          slivers: [
-
-            
-             SliverAppBar(
-              automaticallyImplyLeading: false,
+        child: Scrollbar(
+          controller: scrollController,
+          child: CustomScrollView
+          (
+            controller: scrollController,
+            slivers: <Widget>[
               
-              //pinned: true,
-              expandedHeight: 300,
-
-              flexibleSpace: FlexibleSpaceBar(
-                background:
-                    
-                    UserProfileWidget(), // user profile image and name widget
-              ),
-            ),
-            SliverPersistentHeader(
-              pinned: true,
-              floating: false,
-              delegate: ProfileHeader(minExent: 80, maxExent: 264.0)
-              ),
-           
-
-           
-
-            // user transaction list
-            TransactionList()
-          ],
+             
+              
+              //  SliverAppBar(
+              //   automaticallyImplyLeading: false,
+                
+              //   //pinned: true,
+              //   expandedHeight: 300,
+          
+              //   flexibleSpace: FlexibleSpaceBar(
+              //     background:
+                      
+              //         UserProfileWidget(), // user profile image and name widget
+              //   ),
+              // ),
+              // SliverPersistentHeader(
+              //   pinned: true,
+              //   floating: false,
+              //   delegate: ProfileHeader(minExent: 80, maxExent: 264.0)
+              //   ),
+             
+          
+             
+          
+              // user transaction list
+              TransactionList()
+            ],
+          ),
         ),
       ),
     );
